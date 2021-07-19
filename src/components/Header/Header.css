@@ -1,0 +1,9 @@
+.Header {
+    background-color: rgb(255, 208, 151);
+}
+
+.Header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
