@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-
+import { ReactComponent as Logo } from '../../assets/cowsbulls.svg'
 interface HeaderProps {
 }
 
@@ -9,11 +9,8 @@ const Header: React.FC<HeaderProps> = () => {
         <div className="Header">
             <div className="container p-4"> 
                 <div className="row">
-                    <div className="col-3 logo">
-                        Cows and Bulls
-                    </div>
-                    <div className="col-7 nav-bar">
-
+                    <div className="col-6 offset-3 logo">
+                        <Logo style={{width:'20rem', height:'5rem'}}/>
                     </div>
                 </div>
             </div>

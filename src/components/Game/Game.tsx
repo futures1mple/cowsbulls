@@ -19,7 +19,7 @@ ourNumber = parseInt(fullNumber.join(""));
 
 const Game: React.FC<GameProps> = () => {
     const [userNumber, setUserNumber] = useState("");
-    const [numberList, setNumberList] = useState([]);
+    const [numberList, setNumberList] = useState(['']);
 
     const generateNumber = () => {
         var fullNumber = [];
@@ -52,8 +52,12 @@ const Game: React.FC<GameProps> = () => {
                         bulls++;
                     }
                 }
+            }
         }
-        }
+
+        setNumberList([...numberList, userNumber + " "  + " – " + " " + "cows:  " + cows + " " + "; " + " " + "bulls:  " + bulls])
+
+        
         if (bulls === 3) {
             document.getElementById("game-board")?.classList.add("d-none");
             document.getElementById("win-banner")?.classList.remove("d-none");
@@ -94,21 +98,22 @@ const Game: React.FC<GameProps> = () => {
                             className="user-button offset-1 col-4"
                             onClick={() => {
                                 numberCheck();
+                                console.log(numberList);
                             }}
                             >
                             Submit
                         </button>
                     </div>
-                    {/* <div className="col-6 offset-3 align-items-center mt-5">
+                    <div className="col-6 offset-3 align-items-center mt-5">
                         <div className="col-12 text-center">Your numbers</div>
                         <div className="col-12 number-list">
                             <ul>
-                                <li>
-                                    
-                                </li>
+                                {numberList.map((number)=> {
+                                    return(<li style={{listStyleType:'none'}}>{number}</li>)
+                                })}
                             </ul>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
                 <div id='win-banner' className="win-banner d-none">
                     <div className="win-text" style={{ fontSize: "3rem" }}>
