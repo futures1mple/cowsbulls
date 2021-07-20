@@ -34,7 +34,6 @@ const Game: React.FC<GameProps> = () => {
         }
         fullNumber.push(digit1, digit2, digit3);
         ourNumber = parseInt(fullNumber.join(""));
-        console.log(ourNumber);
     };
 
     const numberCheck = () => {
