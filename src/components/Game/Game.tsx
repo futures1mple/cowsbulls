@@ -5,16 +5,23 @@ interface GameProps {}
 
 let ourNumber = 0;
 var fullNumber = [];
-var digit1 = Math.floor(Math.random() * 9) + 1;
-var digit2 = Math.floor(Math.random() * 9) + 1;
+var digit1 = Math.floor(Math.random() * 10);
+while(digit1 === 0) {
+    digit1 = Math.floor(Math.random() * 10);
+}
+var digit2 = Math.floor(Math.random() * 10);
 while (digit1 === digit2) {
-    digit2 = Math.floor(Math.random() * 9) + 1;
+    digit2 = Math.floor(Math.random() * 10);
 }
-var digit3 = Math.floor(Math.random() * 9) + 1;
+var digit3 = Math.floor(Math.random() * 10);
 while (digit3 === digit1 || digit3 === digit2) {
-    digit3 = Math.floor(Math.random() * 9) + 1;
+    digit3 = Math.floor(Math.random() * 10);
 }
-fullNumber.push(digit1, digit2, digit3);
+var digit4 = Math.floor(Math.random() * 10);
+while (digit4 === digit1 || digit4 === digit2 || digit4 === digit3) {
+    digit4 = Math.floor(Math.random() * 10);
+}
+fullNumber.push(digit1, digit2, digit3, digit4);
 ourNumber = parseInt(fullNumber.join(""));
 
 const Game: React.FC<GameProps> = () => {
@@ -26,20 +33,23 @@ const Game: React.FC<GameProps> = () => {
 
     const generateNumber = () => {
         var fullNumber = [];
-        var digit1 = Math.floor(Math.random() * 9) + 1;
-        var digit2 = Math.floor(Math.random() * 9) + 1;
+        var digit1 = Math.floor(Math.random() * 10);
+        while(digit1 === 0) {
+            digit1 = Math.floor(Math.random() * 10);
+        }
+        var digit2 = Math.floor(Math.random() * 10);
         while (digit1 === digit2) {
-            digit2 = Math.floor(Math.random() * 9) + 1;
+            digit2 = Math.floor(Math.random() * 10);
         }
-        var digit3 = Math.floor(Math.random() * 9) + 1;
+        var digit3 = Math.floor(Math.random() * 10);
         while (digit3 === digit1 || digit3 === digit2) {
-            digit3 = Math.floor(Math.random() * 9) + 1;
+            digit3 = Math.floor(Math.random() * 10);
         }
-        var digit4 = Math.floor(Math.random() * 9) + 1;
+        var digit4 = Math.floor(Math.random() * 10);
         while (digit4 === digit1 || digit4 === digit2 || digit4 === digit3) {
-            digit4 = Math.floor(Math.random() * 9) + 1;
+            digit4 = Math.floor(Math.random() * 10);
         }
-        fullNumber.push(digit1, digit2, digit3);
+        fullNumber.push(digit1, digit2, digit3, digit4);
         ourNumber = parseInt(fullNumber.join(""));
     };
 
@@ -64,7 +74,7 @@ const Game: React.FC<GameProps> = () => {
         setNumberList([...numberList, userNumber + " "  + " – " + " " + "cows:  " + cows + " " + "; " + " " + "bulls:  " + bulls])
 
         
-        if (bulls === 3) {
+        if (bulls === 4) {
             document.getElementById("game-board")?.classList.add("d-none");
             document.getElementById("win-banner")?.classList.remove("d-none");
         }
@@ -76,9 +86,8 @@ const Game: React.FC<GameProps> = () => {
             <div className="container d-flex flex-wrap">
                 <div id="game-board" className="game-board rules-container col-12 col-md-6">
                     <ul>
-                        <li>The number to be guessed must be a 4 digit number, using only digits from 1 - 9, each digit atmost once. e.g. 1234 is valid, 0123 is not valid, 9877 is not valid, 9876 is valid.</li>
+                        <li>The number to be guessed must be a 4 digit number, using only digits from 0 - 9, each digit atmost once. e.g. 1234 is valid, 0123 is not valid, 9877 is not valid, 9876 is valid.</li>
                         <li>For every guess that the player makes, he gets 2 values - the number of bulls and the number of cows. 1 bull means the guess contains and the target number have 1 digit in common, and in the correct position. 1 cow means the guess and the target have 1 digit in common, but not in correct position. e.g. Let the target be 1234. Guessing 4321 will give 0 bulls and 4 cows. 3241 will give 1 bull and 3 cows. 4 bulls means you have won the game!</li>
-                        <li>The player gets 7 chances to correctly guess the entire number.</li>
                     </ul>
                 </div>
                 <div
@@ -110,9 +119,10 @@ const Game: React.FC<GameProps> = () => {
                             />
                         <button
                             className="user-button offset-1 col-4"
-                            onClick={() => {
+                            onClick={(e) => {
                                 numberCheck();
-                                console.log(numberList);
+                                console.log(userNumber);
+                                console.log(ourNumber);
                             }}
                             >
                             Submit
