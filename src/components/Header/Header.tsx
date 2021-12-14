@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = () => {
             <div className="container p-4"> 
                 <div className="row">
                     <div className="col-12 col-md-6 offset-md-3 logo">
-                        <Logo style={{width:'20rem', height:'5rem'}}/>
+                        <Logo style={{width:'100%', height:'5rem'}}/>
                     </div>
                 </div>
             </div>

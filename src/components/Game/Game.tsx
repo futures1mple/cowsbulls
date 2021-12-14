@@ -4,6 +4,8 @@ import "./Game.css";
 interface GameProps {}
 
 let ourNumber = 0;
+
+
 var fullNumber = [];
 var digit1 = Math.floor(Math.random() * 10);
 while(digit1 === 0) {
@@ -23,6 +25,7 @@ while (digit4 === digit1 || digit4 === digit2 || digit4 === digit3) {
 }
 fullNumber.push(digit1, digit2, digit3, digit4);
 ourNumber = parseInt(fullNumber.join(""));
+
 
 const Game: React.FC<GameProps> = () => {
     const [ userNumber , setUserNumber ] = useState("");
@@ -85,8 +88,8 @@ const Game: React.FC<GameProps> = () => {
         <div className="Game">
             <div className="container d-flex flex-wrap">
                 <div className="row">
-                    <div className="col-12 col-md-6 p-3">
-                        <div id="game-board" className="game-board rules-container">
+                    <div className="col-12 col-md-6 p-3" style={{height: 'inherit'}}>
+                        <div id="game-board" className="game-board rules-container h-100">
                             <ul>
                                 <li>The number to be guessed must be a 4 digit number, using only digits from 0 - 9, each digit atmost once. e.g. 1234 is valid, 0123 is not valid, 9877 is not valid, 9876 is valid.</li>
                                 <li>For every guess that the player makes, he gets 2 values - the number of bulls and the number of cows. 1 bull means the guess contains and the target number have 1 digit in common, and in the correct position. 1 cow means the guess and the target have 1 digit in common, but not in correct position. e.g. Let the target be 1234. Guessing 4321 will give 0 bulls and 4 cows. 3241 will give 1 bull and 3 cows. 4 bulls means you have won the game!</li>
@@ -114,21 +117,24 @@ const Game: React.FC<GameProps> = () => {
                             </div>
                             <div className="col-12">Enter your predicted number:</div>
                             <div className="mt-3 justify-content-between col-12">
-                                <input
-                                    type="number col-7"
-                                    onChange={(e) => {
-                                        setUserNumber(e.target.value);
-                                    }}
-                                    className="user-input-field"
-                                    />
-                                <button
-                                    className="user-button offset-1 col-4"
-                                    onClick={(e) => {
-                                        numberCheck();
-                                    }}
-                                    >
-                                    Submit
-                                </button>
+                                <form onSubmit={(e) => {
+                                            numberCheck();
+
+                                        }}>
+                                    <input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setUserNumber(e.target.value);
+                                        }}
+                                        className="user-input-field col-7"
+                                        />
+                                    <button
+                                        type='submit'
+                                        className="user-button offset-1 col-4"
+                                        >
+                                        Submit
+                                    </button>
+                                </form>
                             </div>
                             <div className="col-6 offset-3 align-items-center mt-5">
                                 <div className="col-12 text-center">Your numbers</div>
@@ -143,23 +149,23 @@ const Game: React.FC<GameProps> = () => {
                         </div>
                     </div>
                     
-                </div>
-                <div id='win-banner' className="win-banner d-none">
-                    <div className="win-text" style={{ fontSize: "3rem" }}>
-                        You win!
-                        <div className="pace">You did it in {pace} steps</div>
+                    <div id='win-banner' className="win-banner d-none col-12 col-md-6">
+                        <div className="win-text" style={{ fontSize: "3rem" }}>
+                            You win!
+                            <div className="pace">You did it in {pace} steps</div>
+                        </div>
+                        <button
+                            className="play-again p-2 mt-3"
+                            onClick={() => {
+                                document.getElementById("game-board")?.classList.remove("d-none");
+                                document.getElementById("win-banner")?.classList.add("d-none");
+                                // generateNumber();
+                                window.location.reload();
+                            }}
+                            >
+                            Play again!
+                        </button>
                     </div>
-                    <button
-                        className="play-again p-2 mt-3"
-                        onClick={() => {
-                            document.getElementById("game-board")?.classList.remove("d-none");
-                            document.getElementById("win-banner")?.classList.add("d-none");
-                            // generateNumber();
-                            window.location.reload();
-                        }}
-                    >
-                        Play again!
-                    </button>
                 </div>
             </div>
         </div>

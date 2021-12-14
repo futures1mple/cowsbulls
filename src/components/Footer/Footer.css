@@ -1,0 +1,28 @@
+.Footer {
+    background-color: rgb(255, 208, 151);
+    padding: 2rem 0;
+}
+
+.allRights {
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.createdBy {
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.companyName {
+    text-decoration: none;
+    color: #1d5a40;
+    transition: ease-in-out .3s;
+}
+
+.companyName:hover {
+    color: #277452;
+}
