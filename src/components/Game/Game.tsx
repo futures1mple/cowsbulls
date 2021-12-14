@@ -118,15 +118,18 @@ const Game: React.FC<GameProps> = () => {
                             <div className="col-12">Enter your predicted number:</div>
                             <div className="mt-3 justify-content-between col-12">
                                 <form onSubmit={(e) => {
+                                            e.preventDefault();
                                             numberCheck();
-
+                                            setUserNumber('');
                                         }}>
                                     <input
+                                        id='personal-input'
                                         type="number"
                                         onChange={(e) => {
                                             setUserNumber(e.target.value);
                                         }}
                                         className="user-input-field col-7"
+                                        value={userNumber}
                                         />
                                     <button
                                         type='submit'
