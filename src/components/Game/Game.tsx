@@ -33,29 +33,23 @@ const Game: React.FC<GameProps> = () => {
     const [ pace , setPace ] = useState(0);
 
 
-
-    // const generateNumber = () => {
-    //     var fullNumber = [];
-    //     var digit1 = Math.floor(Math.random() * 10);
-    //     while(digit1 === 0) {
-    //         digit1 = Math.floor(Math.random() * 10);
-    //     }
-    //     var digit2 = Math.floor(Math.random() * 10);
-    //     while (digit1 === digit2) {
-    //         digit2 = Math.floor(Math.random() * 10);
-    //     }
-    //     var digit3 = Math.floor(Math.random() * 10);
-    //     while (digit3 === digit1 || digit3 === digit2) {
-    //         digit3 = Math.floor(Math.random() * 10);
-    //     }
-    //     var digit4 = Math.floor(Math.random() * 10);
-    //     while (digit4 === digit1 || digit4 === digit2 || digit4 === digit3) {
-    //         digit4 = Math.floor(Math.random() * 10);
-    //     }
-    //     fullNumber.push(digit1, digit2, digit3, digit4);
-    //     ourNumber = parseInt(fullNumber.join(""));
-    // };
-
+    const validation = () => {
+        let un = userNumber.toString().split("");
+        let setStatus = ''
+        if (un.length != 4) {
+            setStatus = 'err'
+        } else if ( un[0] === '0' ) {
+            setStatus = 'err'
+        } else {
+            if ( un[0] == un[1] || un[0] == un[2] || un[0] == un[3] || un[1] == un[2] || un[1] == un[3] || un[2] == un[3] ) {
+                setStatus = 'err';
+            } else {
+                setStatus = 'ok';
+            }
+        }
+        return setStatus;
+    }
+   
     const numberCheck = () => {
         let son = ourNumber.toString().split("");
         let b = [];
@@ -75,8 +69,6 @@ const Game: React.FC<GameProps> = () => {
         }
         setPace(pace+1)
         setNumberList([...numberList, userNumber + " "  + " – " + " " + "cows:  " + cows + " " + "; " + " " + "bulls:  " + bulls])
-
-        
         if (bulls === 4) {
             document.getElementById("game-board")?.classList.add("d-none");
             document.getElementById("win-banner")?.classList.remove("d-none");
@@ -119,7 +111,12 @@ const Game: React.FC<GameProps> = () => {
                             <div className="mt-3 justify-content-between col-12">
                                 <form onSubmit={(e) => {
                                             e.preventDefault();
-                                            numberCheck();
+                                            let statusIs = validation();
+                                            if (statusIs === 'ok') {
+                                                numberCheck();
+                                            } else {
+                                                alert('Number is wrong!!!');
+                                            }
                                             setUserNumber('');
                                         }}>
                                     <input
