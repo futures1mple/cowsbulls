@@ -37,17 +37,16 @@ const Game: React.FC<GameProps> = () => {
         let un = userNumber.toString().split("");
         let setStatus = ''
         if (un.length != 4) {
-            setStatus = 'err'
+            return setStatus = 'err'
         } else if ( un[0] === '0' ) {
-            setStatus = 'err'
+            return setStatus = 'err'
+        } else if ( un[0] == un[1] || un[0] == un[2] || un[0] == un[3] || un[1] == un[2] || un[1] == un[3] || un[2] == un[3] ) {
+            return setStatus = 'err';
+        } else if ( parseInt(userNumber) <= 0 ) {
+            return setStatus = 'err';
         } else {
-            if ( un[0] == un[1] || un[0] == un[2] || un[0] == un[3] || un[1] == un[2] || un[1] == un[3] || un[2] == un[3] ) {
-                setStatus = 'err';
-            } else {
-                setStatus = 'ok';
-            }
+            return setStatus = 'ok';
         }
-        return setStatus;
     }
    
     const numberCheck = () => {
