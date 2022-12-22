@@ -87,9 +87,8 @@ const Game: React.FC<GameProps> = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 p-3">                
+                    <div id="game-board" className="col-12 col-md-6 p-3">                
                         <div
-                        id="game-board"
                         className="game-board"
                         style={{ flexWrap: "wrap" }}
                         >
