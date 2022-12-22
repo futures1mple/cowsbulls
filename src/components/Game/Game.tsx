@@ -79,15 +79,15 @@ const Game: React.FC<GameProps> = () => {
         <div className="Game">
             <div className="container d-flex flex-wrap">
                 <div className="row">
-                    <div className="col-12 col-md-6 p-3" style={{height: 'inherit'}}>
-                        <div id="game-board" className="game-board rules-container h-100">
+                    <div id="game-board" className="col-12 col-md-6 p-3" style={{height: 'inherit'}}>
+                        <div className="game-board rules-container h-100">
                             <ul>
                                 <li>The number to be guessed must be a 4 digit number, using only digits from 0 - 9, each digit atmost once. e.g. 1234 is valid, 0123 is not valid, 9877 is not valid, 9876 is valid.</li>
                                 <li>For every guess that the player makes, he gets 2 values - the number of bulls and the number of cows. 1 bull means the guess contains and the target number have 1 digit in common, and in the correct position. 1 cow means the guess and the target have 1 digit in common, but not in correct position. e.g. Let the target be 1234. Guessing 4321 will give 0 bulls and 4 cows. 3241 will give 1 bull and 3 cows. 4 bulls means you have won the game!</li>
                             </ul>
                         </div>
                     </div>
-                    <div id="game-board" className="col-12 col-md-6 p-3">                
+                    <div className="col-12 col-md-6 p-3">                
                         <div
                         className="game-board"
                         style={{ flexWrap: "wrap" }}
